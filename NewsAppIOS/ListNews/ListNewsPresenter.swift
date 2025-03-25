@@ -6,7 +6,8 @@
 //
 protocol NewsPresenterProtocol {
     func newsLoaded(news: [News])
-    func updateListForFilter()
+    func updateTabSelection(favorite: Bool)
+    func updateListNews()
 }
 
 final class ListNewsPresenter {
@@ -40,11 +41,6 @@ final class ListNewsPresenter {
         let news: News = news[indexPath]
         listNewsRouting?.showDetailMovie(news: news)
     }
-    
-    func toggleFavoritesFilter(showFavorites: Bool) {
-        self.showFavorites = showFavorites
-        updateListForFilter()
-       }
 }
 
 extension ListNewsPresenter: NewsPresenterProtocol {
@@ -53,7 +49,13 @@ extension ListNewsPresenter: NewsPresenterProtocol {
         newsViewProtocol?.updateTable()
     }
     
-    func updateListForFilter() {
+    func updateTabSelection(favorite: Bool) {
+        self.showFavorites = favorite
+        newsViewProtocol?.updateTabSelection(favorites: showFavorites)
+        updateListNews()
+    }
+    
+    func updateListNews() {
         listNewsInteractor.applyFilter(favorite: showFavorites)
     }
 }

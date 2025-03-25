@@ -4,7 +4,6 @@
 //
 //  Created by Radmas on 21/03/25.
 //
-import Foundation
 import CoreData
 
 protocol NewsRepository {
@@ -29,9 +28,9 @@ class NewsCoreDataRepository: NewsRepository {
     }
 
     func syncNews() async {
-           let newsList = await newsApiRepository.fetchNewsFromAPI()
-           saveNewsList(newsList: newsList)
-       }
+        let newsList = await newsApiRepository.fetchNewsFromAPI()
+        saveNewsList(newsList: newsList)
+    }
     
     func getNews() -> [News] {
         let fetchRequest: NSFetchRequest<NewsEntity> = NewsEntity.fetchRequest()

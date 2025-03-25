@@ -4,6 +4,8 @@
 //
 //  Created by Radmas on 21/03/25.
 //
+import Foundation
+
 class ListNewsInteractor {
     private var newsRepository: NewsRepository!
     private var newsPresenter: NewsPresenterProtocol?
@@ -19,20 +21,15 @@ class ListNewsInteractor {
     func syncNews() {
            Task {
                await newsRepository.syncNews()
-               loadNews()
+               thereFavoriteNews()
            }
        }
     
-    func loadNews() {
-        var news: [News] = getNewsFavorites()
-        if news.isEmpty {
-            news = newsRepository.getNews()
+    func thereFavoriteNews() {
+        let favorite: Bool = !getNewsFavorites().isEmpty
+        DispatchQueue.main.async {
+            self.newsPresenter?.updateTabSelection(favorite: favorite)
         }
-        newsPresenter?.newsLoaded(news: news)
-    }
-    
-    func getNewsFavorites() -> [News]{
-        newsRepository.getNews().filter {$0.favorite == true}
     }
     
     func applyFilter(favorite: Bool) {
@@ -45,7 +42,11 @@ class ListNewsInteractor {
         newsPresenter?.newsLoaded(news: news)
     }
     
+    func getNewsFavorites() -> [News]{
+        newsRepository.getNews().filter {$0.favorite == true}
+    }
+    
     func updateListNews() {
-        newsPresenter?.updateListForFilter()
+        newsPresenter?.updateListNews()
     }
 }

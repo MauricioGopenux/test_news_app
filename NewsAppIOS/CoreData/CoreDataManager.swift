@@ -23,7 +23,6 @@ class CoreDataManager {
         return persistentContainer.viewContext
     }
 
-    // Guardar cambios en Core Data
     func saveContext() {
         do {
             try context.save()
