@@ -11,8 +11,9 @@ import UIKit
 class AppDependencies {
     
     private let coreDataManager = CoreDataManager.shared
-    private let newsApiRespository: NewsApiRepository = NewsApiRepository()
-    private let newsCoreDataRepository: NewsCoreDataRepository = NewsCoreDataRepository()
+    private let newsApiDataSource: NewsApiDataSource = NewsApiDataSource()
+    private let newsDiskDataSource: NewsDiskDataSource = NewsDiskDataSource()
+    private var newsDataRepository: NewsDataRepository!
     private let listNewsInteractor: ListNewsInteractor = ListNewsInteractor()
     private let listNewsPresenter: ListNewsPresenter = ListNewsPresenter()
     private let listNewRouter: ListNewsRouter = ListNewsRouter()
@@ -25,8 +26,8 @@ class AppDependencies {
     func injectDependencies(window: UIWindow) {
         if let navigationController = window.rootViewController as? UINavigationController{
             if let listNewsViewController = navigationController.visibleViewController as?  ListNewsViewController {
-                newsCoreDataRepository.setNewsApiRepository(newsApiRepository: newsApiRespository)
-                newsCoreDataRepository.setNSManagedObjectContext(context: coreDataManager.context)
+                newsDataRepository = NewsDataRepository(newsDiskDataSource: newsDiskDataSource, newsApiDataSource: newsApiDataSource)
+                newsDiskDataSource.setNSManagedObjectContext(context: coreDataManager.context)
                 injectAppDependenciesToDetailRouter()
                 injectNewsDependencies(listNewsViewController: listNewsViewController)
             }
@@ -38,7 +39,7 @@ class AppDependencies {
     }
     
     private func injectNewsDependencies(listNewsViewController: ListNewsViewController) {
-        listNewsInteractor.setNewsRepository(newsRepository: newsCoreDataRepository)
+        listNewsInteractor.setNewsRepository(newsRepository: newsDataRepository)
         listNewsInteractor.setNewsPresenter(newsPresenter: listNewsPresenter)
         listNewRouter.setDetailMovieRouter(newsDetailsRouter: newsDetailsRouter)
         listNewRouter.setMoviesViewController(listNewsVC: listNewsViewController)
@@ -50,7 +51,7 @@ class AppDependencies {
     
     func configNewsDetailsVC(news: News) -> UIViewController{
         newsDetailsViewController = NewsDetailsViewController()
-        newDetailsInteractor.setNewsRepository(newsRepository: newsCoreDataRepository)
+        newDetailsInteractor.setNewsRepository(newsRepository: newsDataRepository)
         newDetailsInteractor.setListNewsInteractor(listNewsInteractor: listNewsInteractor)
         newsDetailsPresenter.setNews(news: news)
         newsDetailsPresenter.setDetailViewProtocol(detailViewProtocol: newsDetailsViewController)

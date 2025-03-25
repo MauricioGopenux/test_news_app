@@ -6,7 +6,7 @@
 //
 import Foundation
 
-class NewsApiRepository {
+class NewsApiDataSource {
     func fetchNewsFromAPI() async -> [News] {
         let url = URL(string: "https://newsapi.org/v2/everything?q=apple&from=2025-03-24&to=2025-03-24&sortBy=popularity&apiKey=2b1017c779664d54ad0dece2dbafa61c")!
         do {

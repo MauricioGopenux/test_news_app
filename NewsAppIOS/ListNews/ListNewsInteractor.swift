@@ -20,8 +20,8 @@ class ListNewsInteractor {
     
     func syncNews() {
            Task {
-               await newsRepository.syncNews()
-               thereFavoriteNews()
+               let news: [News] = await newsRepository.syncNews()
+               newsRepository.saveNewsList(newsList: news)
            }
        }
     

@@ -35,6 +35,7 @@ final class ListNewsPresenter {
     
     func loadNews() {
         listNewsInteractor.syncNews()
+        listNewsInteractor.thereFavoriteNews()
     }
     
     func showNewsDetails(indexPath: Int) {

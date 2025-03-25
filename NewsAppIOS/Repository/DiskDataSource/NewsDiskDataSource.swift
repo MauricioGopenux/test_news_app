@@ -6,30 +6,11 @@
 //
 import CoreData
 
-protocol NewsRepository {
-    func syncNews() async
-    func getNews() -> [News]
-    func saveNewsList(newsList: [News])
-    func updateNews(news: News)
-    func deleteNews(news: News)
-    func deleteAllNews()
-}
-
-class NewsCoreDataRepository: NewsRepository {
-    private var newsApiRepository: NewsApiRepository!
+class NewsDiskDataSource {
     private var context: NSManagedObjectContext!
     
     func setNSManagedObjectContext(context: NSManagedObjectContext) {
         self.context = context
-    }
-    
-    func setNewsApiRepository(newsApiRepository: NewsApiRepository) {
-        self.newsApiRepository = newsApiRepository
-    }
-
-    func syncNews() async {
-        let newsList = await newsApiRepository.fetchNewsFromAPI()
-        saveNewsList(newsList: newsList)
     }
     
     func getNews() -> [News] {
