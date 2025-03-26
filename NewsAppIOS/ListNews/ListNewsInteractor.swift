@@ -24,6 +24,7 @@ class ListNewsInteractor {
                newsRepository.saveNewsList(newsList: news)
                newsPresenter?.initializeListNews()
            }
+        
        }
     
     func thereFavoriteNews() {

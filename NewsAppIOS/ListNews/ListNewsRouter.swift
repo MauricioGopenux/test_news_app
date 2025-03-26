@@ -21,6 +21,6 @@ class ListNewsRouter: ListNewsRouting {
     }
     
     func showDetailsNews(news: News) {
-        newsDetailsRouter.showDetailNews(referenceVC: listNewsVC, news: news)
+        newsDetailsRouter.configDetailsNewsVC(referenceVC: listNewsVC, news: news)
     }
 }
