@@ -9,6 +9,7 @@ import Foundation
 class ListNewsInteractor {
     private var newsRepository: NewsRepository!
     private var newsPresenter: NewsPresenterProtocol?
+    private var showFavorites: Bool = true
     
     func setNewsRepository(newsRepository: NewsRepository) {
         self.newsRepository = newsRepository
@@ -19,28 +20,22 @@ class ListNewsInteractor {
     }
     
     func syncNews() {
-           Task {
-               let news: [News] = await newsRepository.syncNews()
-               newsRepository.saveNewsList(newsList: news)
-               newsPresenter?.initializeListNews()
-           }
-        
-       }
-    
-    func thereFavoriteNews() {
-        let favorite: Bool = !getNewsFavorites().isEmpty
-        DispatchQueue.main.async {
-            self.newsPresenter?.updateTabSelection(favorite: favorite)
+        Task {
+            let news: [News] = await newsRepository.syncNews()
+            newsRepository.saveNewsList(newsList: news)
+            await thereFavoriteNews()
         }
     }
     
+    @MainActor
+    func thereFavoriteNews() {
+        showFavorites = !getNewsFavorites().isEmpty
+        newsPresenter?.selectTabItem(favorite: showFavorites)
+        applyFilter(favorite: showFavorites)
+    }
+    
     func applyFilter(favorite: Bool) {
-        let news: [News]
-        if favorite {
-            news = getNewsFavorites()
-        } else {
-            news = newsRepository.getNews()
-        }
+        let news: [News] =  favorite ? getNewsFavorites(): newsRepository.getNews()
         newsPresenter?.newsLoaded(news: news)
     }
     
@@ -48,8 +43,16 @@ class ListNewsInteractor {
         newsRepository.getNews().filter {$0.favorite == true}
     }
     
-    func updateFavorite(news: News) {
-        newsRepository.updateNews(news: news)
-        newsPresenter?.updateListNews()
+    func updateListNews(favorite: Bool) {
+        if favorite != showFavorites {
+            showFavorites = favorite
+            applyFilter(favorite: showFavorites)
+        }
+    }
+    
+    func updateFavoriteNews() {
+        if showFavorites {
+            applyFilter(favorite: showFavorites)
+        }
     }
 }

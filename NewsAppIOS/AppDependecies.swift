@@ -20,6 +20,7 @@ class AppDependencies {
     
     private let newsDetailsRouter: NewsDetailsRouter = NewsDetailsRouter()
     private let newsDetailsPresenter: NewsDetailsPresenter = NewsDetailsPresenter()
+    private let newsDetailsInteractor: NewsDetailsInteractor = NewsDetailsInteractor()
     private var newsDetailsViewController: NewsDetailsViewController!
     
     func injectDependencies(window: UIWindow) {
@@ -49,12 +50,19 @@ class AppDependencies {
     }
     
     func configNewsDetailsVC(news: News) -> UIViewController{
+        injectDependenciesNewsDetailsVC()
         newsDetailsViewController = NewsDetailsViewController()
         newsDetailsPresenter.setNews(news: news)
         newsDetailsPresenter.setDetailViewProtocol(detailViewProtocol: newsDetailsViewController)
-        newsDetailsPresenter.setListNewsInteractor(listNewsInteractor: listNewsInteractor)
         newsDetailsViewController.setNewsDetailsPresenter(newsDetailPresenter: newsDetailsPresenter)
         
         return newsDetailsViewController
+    }
+    
+    private func injectDependenciesNewsDetailsVC() {
+        newsDetailsPresenter.setNewsDetailsInteractor(newsDetailsInteractor: newsDetailsInteractor)
+        newsDetailsPresenter.setListNewsPresenter(newsPresenterProtocol: listNewsPresenter)
+        newsDetailsInteractor.setNewsRepository(newsRepository: newsDataRepository)
+        newsDetailsInteractor.setNewsPresenter(newsDetailsPresenter: newsDetailsPresenter)
     }
 }

@@ -4,11 +4,13 @@
 //
 //  Created by Radmas on 21/03/25.
 //
-protocol NewsPresenterProtocol {
+protocol NewsPresenterProtocol: AnyObject {
     func newsLoaded(news: [News])
-    func updateTabSelection(favorite: Bool)
-    func updateListNews()
-    func initializeListNews()
+    func selectTabItem(favorite: Bool)
+}
+
+protocol UpdateNewsPresenterProtocol: AnyObject {
+    func updateFavoriteListNews()
 }
 
 final class ListNewsPresenter {
@@ -16,7 +18,6 @@ final class ListNewsPresenter {
     private weak var newsViewProtocol: ListNewsViewProtocol?
     private var listNewsRouting: ListNewsRouting?
     var news: [News] = []
-    private var showFavorites = true
     
     func setListNewsInteractor(listNewsInteractor: ListNewsInteractor) {
         self.listNewsInteractor = listNewsInteractor
@@ -42,6 +43,11 @@ final class ListNewsPresenter {
         let news: News = news[indexPath]
         listNewsRouting?.showDetailsNews(news: news)
     }
+    
+    func updateTabSelection(favorite: Bool) {
+        selectTabItem(favorite: favorite)
+        listNewsInteractor.updateListNews(favorite: favorite)
+    }
 }
 
 extension ListNewsPresenter: NewsPresenterProtocol {
@@ -50,17 +56,13 @@ extension ListNewsPresenter: NewsPresenterProtocol {
         newsViewProtocol?.updateTable()
     }
     
-    func updateTabSelection(favorite: Bool) {
-        self.showFavorites = favorite
-        newsViewProtocol?.updateTabSelection(favorites: showFavorites)
-        updateListNews()
+    func selectTabItem(favorite: Bool) {
+        newsViewProtocol?.updateTabSelectionVC(favorites: favorite)
     }
-    
-    func updateListNews() {
-        listNewsInteractor.applyFilter(favorite: showFavorites)
-    }
-    
-    func initializeListNews() {
-        listNewsInteractor.thereFavoriteNews()
+}
+
+extension ListNewsPresenter: UpdateNewsPresenterProtocol{
+    func updateFavoriteListNews() {
+            listNewsInteractor.updateFavoriteNews()
     }
 }

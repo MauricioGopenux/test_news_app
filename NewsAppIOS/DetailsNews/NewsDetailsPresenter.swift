@@ -4,9 +4,14 @@
 //
 //  Created by Radmas on 25/03/25.
 //
+protocol NewsDetailsPresenterProtocol: AnyObject {
+    func updateListNews()
+}
+
 final class NewsDetailsPresenter {
     private var detailViewProtocol: DetailViewProtocol?
-    private var listNewsInteractor: ListNewsInteractor!
+    private var newsDetailsInteractor: NewsDetailsInteractor!
+    private var newsPresenterProtocol : UpdateNewsPresenterProtocol?
     private var news: News!
     
     func setNews(news: News) {
@@ -17,8 +22,12 @@ final class NewsDetailsPresenter {
         self.detailViewProtocol = detailViewProtocol
     }
     
-    func setListNewsInteractor(listNewsInteractor: ListNewsInteractor) {
-        self.listNewsInteractor = listNewsInteractor
+    func setNewsDetailsInteractor(newsDetailsInteractor: NewsDetailsInteractor) {
+        self.newsDetailsInteractor = newsDetailsInteractor
+    }
+    
+    func setListNewsPresenter(newsPresenterProtocol : UpdateNewsPresenterProtocol) {
+        self.newsPresenterProtocol = newsPresenterProtocol
     }
     
     func showNews() {
@@ -27,6 +36,12 @@ final class NewsDetailsPresenter {
     
     func updateFavorite(favorite: Bool) {
         news.favorite = favorite
-        listNewsInteractor.updateFavorite(news: news)
+        newsDetailsInteractor.updateFavorite(news: news)
+    }
+}
+
+extension NewsDetailsPresenter: NewsDetailsPresenterProtocol {
+    func updateListNews() {
+        newsPresenterProtocol?.updateFavoriteListNews()
     }
 }

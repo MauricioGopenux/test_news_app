@@ -25,7 +25,7 @@ class NewsDetailsViewController: UIViewController {
     }
     
     private func setTitle() {
-        navigationItem.title = "Detalles"
+        title = "Detalles"
     }
 
     @IBAction func didTapFavorite(_ sender: Any) {

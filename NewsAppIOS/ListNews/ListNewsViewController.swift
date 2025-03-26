@@ -9,7 +9,7 @@ import UIKit
 
 protocol ListNewsViewProtocol: AnyObject {
     func updateTable()
-    func updateTabSelection(favorites: Bool)
+    func updateTabSelectionVC(favorites: Bool)
 }
 
 class ListNewsViewController: UIViewController {
@@ -44,7 +44,7 @@ extension ListNewsViewController: ListNewsViewProtocol {
             self.listNewsTableView.reloadData()
     }
     
-    func updateTabSelection(favorites: Bool) {
+    func updateTabSelectionVC(favorites: Bool) {
             if favorites {
                 self.tabBarListNews.selectedItem = self.tabBarListNews.items?.first
             } else {
@@ -75,7 +75,7 @@ extension ListNewsViewController: UITabBarDelegate {
     func tabBar(_ tabBarListNews: UITabBar, didSelect item: UITabBarItem) {
            if item.tag == 0 {
                listNewsPresenter.updateTabSelection(favorite: true)
-           } else if item.tag == 1 {
+           } else {
                listNewsPresenter.updateTabSelection(favorite: false)
            }
        }
