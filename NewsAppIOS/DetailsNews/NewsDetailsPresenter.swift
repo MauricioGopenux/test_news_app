@@ -6,7 +6,7 @@
 //
 final class NewsDetailsPresenter {
     private var detailViewProtocol: DetailViewProtocol?
-    private var newsDetailsInteractor: NewsDetailsInteractor!
+    private var listNewsInteractor: ListNewsInteractor!
     private var news: News!
     
     func setNews(news: News) {
@@ -17,8 +17,8 @@ final class NewsDetailsPresenter {
         self.detailViewProtocol = detailViewProtocol
     }
     
-    func setListNewsInteractor(newsDetailsInteractor: NewsDetailsInteractor) {
-        self.newsDetailsInteractor = newsDetailsInteractor
+    func setListNewsInteractor(listNewsInteractor: ListNewsInteractor) {
+        self.listNewsInteractor = listNewsInteractor
     }
     
     func showNews() {
@@ -27,6 +27,6 @@ final class NewsDetailsPresenter {
     
     func updateFavorite(favorite: Bool) {
         news.favorite = favorite
-        newsDetailsInteractor.updateFavorite(news: news)
+        listNewsInteractor.updateFavorite(news: news)
     }
 }

@@ -20,10 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="d3Z-fn-4kw">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                    <color key="separatorColor" systemColor="secondaryLabelColor"/>
-                </tableView>
                 <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sGi-JT-DWh">
                     <rect key="frame" x="0.0" y="769" width="393" height="49"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,26 +28,21 @@
                         <tabBarItem tag="1" systemItem="more" id="pUl-dd-gdH"/>
                     </items>
                 </tabBar>
-                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYP-wJ-ubr">
-                    <rect key="frame" x="0.0" y="15" width="393" height="44"/>
-                    <items>
-                        <navigationItem title="Gopenux News" largeTitleDisplayMode="never" id="hzj-xJ-40q"/>
-                    </items>
-                </navigationBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="d3Z-fn-4kw">
+                    <rect key="frame" x="0.0" y="69" width="393" height="700"/>
+                    <color key="separatorColor" systemColor="secondaryLabelColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="sGi-JT-DWh" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="70q-r5-Z8w"/>
-                <constraint firstItem="jYP-wJ-ubr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FnH-W2-jhl"/>
-                <constraint firstItem="sGi-JT-DWh" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="OVm-ns-QGc"/>
-                <constraint firstItem="d3Z-fn-4kw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PYk-o6-HG0"/>
-                <constraint firstItem="d3Z-fn-4kw" firstAttribute="top" secondItem="jYP-wJ-ubr" secondAttribute="bottom" id="QXP-Wy-aOL"/>
-                <constraint firstItem="d3Z-fn-4kw" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Xrx-bo-4rH"/>
-                <constraint firstItem="jYP-wJ-ubr" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="d4f-9j-tKc"/>
-                <constraint firstItem="sGi-JT-DWh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="evm-zC-0Fi"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="d3Z-fn-4kw" secondAttribute="bottom" id="fnX-BU-cNg"/>
-                <constraint firstItem="jYP-wJ-ubr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-44" id="zuK-Cu-Rnh"/>
+                <constraint firstItem="sGi-JT-DWh" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="CbL-oh-pTb"/>
+                <constraint firstItem="sGi-JT-DWh" firstAttribute="top" secondItem="d3Z-fn-4kw" secondAttribute="bottom" id="ExA-bl-PAj"/>
+                <constraint firstItem="d3Z-fn-4kw" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="I5Q-F1-dEp"/>
+                <constraint firstItem="d3Z-fn-4kw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="JQn-d7-wGl"/>
+                <constraint firstItem="sGi-JT-DWh" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="mQM-1c-j0H"/>
+                <constraint firstItem="sGi-JT-DWh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vOG-w9-KwJ"/>
+                <constraint firstItem="d3Z-fn-4kw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yrQ-Wy-JT8"/>
             </constraints>
             <point key="canvasLocation" x="46.564885496183201" y="20.422535211267608"/>
         </view>

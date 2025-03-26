@@ -85,19 +85,6 @@ class NewsDiskDataSource {
             print("Error al eliminar noticia: \(error)")
         }
     }
-    
-    func deleteAllNews() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NewsEntity.fetchRequest()
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
-        do {
-            try context.execute(batchDeleteRequest)
-            try context.save()
-            context.reset()
-        } catch {
-            print("Error al eliminar todas las películas: \(error)")
-        }
-    }
 }
 
 

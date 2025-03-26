@@ -24,11 +24,16 @@ class ListNewsViewController: UIViewController {
         listNewsTableView.dataSource = self
         listNewsTableView.delegate = self
         tabBarListNews.delegate = self
+        setTitle()
         listNewsPresenter.loadNews()
     }
     
     func setListNewsPresenter(listNewsPresenter: ListNewsPresenter) {
         self.listNewsPresenter = listNewsPresenter
+    }
+
+    private func setTitle() {
+        title = "Gopenux News"
     }
 }
 

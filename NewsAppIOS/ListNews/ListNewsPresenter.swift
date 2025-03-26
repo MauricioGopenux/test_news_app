@@ -35,12 +35,16 @@ final class ListNewsPresenter {
     
     func loadNews() {
         listNewsInteractor.syncNews()
+        initializeListNews()
+    }
+    
+    func initializeListNews() {
         listNewsInteractor.thereFavoriteNews()
     }
     
     func showNewsDetails(indexPath: Int) {
         let news: News = news[indexPath]
-        listNewsRouting?.showDetailMovie(news: news)
+        listNewsRouting?.showDetailsNews(news: news)
     }
 }
 

@@ -46,7 +46,8 @@ class ListNewsInteractor {
         newsRepository.getNews().filter {$0.favorite == true}
     }
     
-    func updateListNews() {
+    func updateFavorite(news: News) {
+        newsRepository.updateNews(news: news)
         newsPresenter?.updateListNews()
     }
 }

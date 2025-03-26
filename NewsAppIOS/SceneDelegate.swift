@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
               
               let initialViewController = ListNewsViewController()
               let navigationController = UINavigationController(rootViewController: initialViewController)
-              
+        
               window?.rootViewController = navigationController
               window?.makeKeyAndVisible()
 

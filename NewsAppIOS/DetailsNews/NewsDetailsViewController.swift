@@ -21,8 +21,13 @@ class NewsDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTitle()
         newsDetailPresenter.showNews()
         // Do any additional setup after loading the view.
+    }
+    
+    private func setTitle() {
+        title = "Detalles"
     }
 
     @IBAction func didTapFavorite(_ sender: Any) {

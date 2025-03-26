@@ -19,7 +19,6 @@ class AppDependencies {
     private let listNewRouter: ListNewsRouter = ListNewsRouter()
     
     private let newsDetailsRouter: NewsDetailsRouter = NewsDetailsRouter()
-    private let newDetailsInteractor: NewsDetailsInteractor = NewsDetailsInteractor()
     private let newsDetailsPresenter: NewsDetailsPresenter = NewsDetailsPresenter()
     private var newsDetailsViewController: NewsDetailsViewController!
     
@@ -41,8 +40,8 @@ class AppDependencies {
     private func injectNewsDependencies(listNewsViewController: ListNewsViewController) {
         listNewsInteractor.setNewsRepository(newsRepository: newsDataRepository)
         listNewsInteractor.setNewsPresenter(newsPresenter: listNewsPresenter)
-        listNewRouter.setDetailMovieRouter(newsDetailsRouter: newsDetailsRouter)
-        listNewRouter.setMoviesViewController(listNewsVC: listNewsViewController)
+        listNewRouter.setDetailsNewsRouter(newsDetailsRouter: newsDetailsRouter)
+        listNewRouter.setListNewsViewController(listNewsVC: listNewsViewController)
         listNewsPresenter.setListNewsInteractor(listNewsInteractor: listNewsInteractor)
         listNewsPresenter.setListNewsRouter(listNewsRouting: listNewRouter)
         listNewsPresenter.setListNewsViewProtocol(newsViewProtocol: listNewsViewController)
@@ -51,11 +50,9 @@ class AppDependencies {
     
     func configNewsDetailsVC(news: News) -> UIViewController{
         newsDetailsViewController = NewsDetailsViewController()
-        newDetailsInteractor.setNewsRepository(newsRepository: newsDataRepository)
-        newDetailsInteractor.setListNewsInteractor(listNewsInteractor: listNewsInteractor)
         newsDetailsPresenter.setNews(news: news)
         newsDetailsPresenter.setDetailViewProtocol(detailViewProtocol: newsDetailsViewController)
-        newsDetailsPresenter.setListNewsInteractor(newsDetailsInteractor: newDetailsInteractor)
+        newsDetailsPresenter.setListNewsInteractor(listNewsInteractor: listNewsInteractor)
         newsDetailsViewController.setNewsDetailsPresenter(newsDetailPresenter: newsDetailsPresenter)
         
         return newsDetailsViewController

@@ -10,7 +10,6 @@ protocol NewsRepository {
     func saveNewsList(newsList: [News])
     func updateNews(news: News)
     func deleteNews(news: News)
-    func deleteAllNews()
 }
 
 class NewsDataRepository: NewsRepository {
@@ -40,10 +39,4 @@ class NewsDataRepository: NewsRepository {
     func deleteNews(news: News) {
         newsDiskDataSource.deleteNews(news: news)
     }
-    
-    func deleteAllNews() {
-        newsDiskDataSource.deleteAllNews()
-    }
-    
-    
 }
