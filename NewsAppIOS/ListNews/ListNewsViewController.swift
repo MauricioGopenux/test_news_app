@@ -24,7 +24,7 @@ class ListNewsViewController: UIViewController {
         listNewsTableView.dataSource = self
         listNewsTableView.delegate = self
         tabBarListNews.delegate = self
-        setTitle()
+        configureNavigationBar()
         listNewsPresenter.loadNews()
     }
     
@@ -32,8 +32,10 @@ class ListNewsViewController: UIViewController {
         self.listNewsPresenter = listNewsPresenter
     }
 
-    private func setTitle() {
-        title = "Gopenux News"
+    private func configureNavigationBar() {
+        navigationItem.title = "Gopenux News"
+        navigationItem.backButtonTitle = "Back"
+        navigationController?.navigationBar.tintColor = .black
     }
 }
 
