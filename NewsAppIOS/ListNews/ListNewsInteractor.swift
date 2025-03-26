@@ -27,9 +27,7 @@ class ListNewsInteractor {
     
     func thereFavoriteNews() {
         let favorite: Bool = !getNewsFavorites().isEmpty
-        DispatchQueue.main.async {
-            self.newsPresenter?.updateTabSelection(favorite: favorite)
-        }
+        self.newsPresenter?.updateTabSelection(favorite: favorite)
     }
     
     func applyFilter(favorite: Bool) {

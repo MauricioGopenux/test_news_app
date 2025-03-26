@@ -4,7 +4,6 @@
 //
 //  Created by Radmas on 25/03/25.
 //
-
 import UIKit
 
 protocol DetailViewProtocol: AnyObject {
@@ -23,7 +22,6 @@ class NewsDetailsViewController: UIViewController {
         super.viewDidLoad()
         setTitle()
         newsDetailPresenter.showNews()
-        // Do any additional setup after loading the view.
     }
     
     private func setTitle() {
@@ -47,7 +45,7 @@ extension NewsDetailsViewController: DetailViewProtocol {
         if let urlString = news.imageURL, let url = URL(string: urlString) {
                   loadImage(from: url)
               } else {
-                  NewsImageView.image = UIImage(named: "placeholder") // Imagen por defecto
+                  NewsImageView.image = UIImage(named: "placeholder")
               }
           }
 

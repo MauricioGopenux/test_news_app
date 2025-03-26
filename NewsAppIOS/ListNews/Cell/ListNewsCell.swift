@@ -17,7 +17,7 @@ class ListNewsCell: UITableViewCell {
         if let urlString = news.imageURL, let url = URL(string: urlString) {
                   loadImage(from: url)
               } else {
-                  newsImageView.image = UIImage(named: "placeholder") // Imagen por defecto
+                  newsImageView.image = UIImage(named: "placeholder")
               }
     }
     

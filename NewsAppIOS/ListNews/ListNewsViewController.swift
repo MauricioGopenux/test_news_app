@@ -43,13 +43,11 @@ extension ListNewsViewController: ListNewsViewProtocol {
     }
     
     func updateTabSelection(favorites: Bool) {
-        
             if favorites {
                 self.tabBarListNews.selectedItem = self.tabBarListNews.items?.first
             } else {
                 self.tabBarListNews.selectedItem = self.tabBarListNews.items?.last
             }
-        
     }
 }
 
