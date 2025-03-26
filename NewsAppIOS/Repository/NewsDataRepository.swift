@@ -20,6 +20,7 @@ class NewsDataRepository: NewsRepository {
         self.newsDiskDataSource = newsDiskDataSource
         self.newsApiDataSource = newsApiDataSource
     }
+    
     func syncNews() async -> [News]{
         await newsApiDataSource.fetchNewsFromAPI()
     }

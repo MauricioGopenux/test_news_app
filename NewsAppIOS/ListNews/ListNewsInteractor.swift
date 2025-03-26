@@ -22,12 +22,15 @@ class ListNewsInteractor {
            Task {
                let news: [News] = await newsRepository.syncNews()
                newsRepository.saveNewsList(newsList: news)
+               newsPresenter?.initializeListNews()
            }
        }
     
     func thereFavoriteNews() {
         let favorite: Bool = !getNewsFavorites().isEmpty
-        self.newsPresenter?.updateTabSelection(favorite: favorite)
+        DispatchQueue.main.async {
+            self.newsPresenter?.updateTabSelection(favorite: favorite)
+        }
     }
     
     func applyFilter(favorite: Bool) {

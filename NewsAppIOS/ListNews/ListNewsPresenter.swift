@@ -8,6 +8,7 @@ protocol NewsPresenterProtocol {
     func newsLoaded(news: [News])
     func updateTabSelection(favorite: Bool)
     func updateListNews()
+    func initializeListNews()
 }
 
 final class ListNewsPresenter {
@@ -35,11 +36,6 @@ final class ListNewsPresenter {
     
     func loadNews() {
         listNewsInteractor.syncNews()
-        initializeListNews()
-    }
-    
-    func initializeListNews() {
-        listNewsInteractor.thereFavoriteNews()
     }
     
     func showNewsDetails(indexPath: Int) {
@@ -62,5 +58,9 @@ extension ListNewsPresenter: NewsPresenterProtocol {
     
     func updateListNews() {
         listNewsInteractor.applyFilter(favorite: showFavorites)
+    }
+    
+    func initializeListNews() {
+        listNewsInteractor.thereFavoriteNews()
     }
 }
