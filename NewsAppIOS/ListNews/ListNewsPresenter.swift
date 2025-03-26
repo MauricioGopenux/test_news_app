@@ -41,7 +41,7 @@ final class ListNewsPresenter {
     
     func showNewsDetails(indexPath: Int) {
         let news: News = news[indexPath]
-        listNewsRouting?.showDetailsNews(news: news)
+        listNewsRouting?.showDetailsNews(news: news, updateNewsPresenterProtocol: self)
     }
     
     func updateTabSelection(favorite: Bool) {

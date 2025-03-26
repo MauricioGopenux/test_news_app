@@ -49,8 +49,9 @@ class AppDependencies {
         listNewsViewController.setListNewsPresenter(listNewsPresenter: listNewsPresenter)
     }
     
-    func configNewsDetailsVC(news: News) -> UIViewController{
+    func configNewsDetailsVC(news: News, updateNewsPresenterProtocol: UpdateNewsPresenterProtocol) -> UIViewController{
         injectDependenciesNewsDetailsVC()
+        newsDetailsPresenter.setListNewsPresenter(newsPresenterProtocol: updateNewsPresenterProtocol)
         newsDetailsViewController = NewsDetailsViewController()
         newsDetailsPresenter.setNews(news: news)
         newsDetailsPresenter.setDetailViewProtocol(detailViewProtocol: newsDetailsViewController)
@@ -61,7 +62,6 @@ class AppDependencies {
     
     private func injectDependenciesNewsDetailsVC() {
         newsDetailsPresenter.setNewsDetailsInteractor(newsDetailsInteractor: newsDetailsInteractor)
-        newsDetailsPresenter.setListNewsPresenter(newsPresenterProtocol: listNewsPresenter)
         newsDetailsInteractor.setNewsRepository(newsRepository: newsDataRepository)
         newsDetailsInteractor.setNewsPresenter(newsDetailsPresenter: newsDetailsPresenter)
     }

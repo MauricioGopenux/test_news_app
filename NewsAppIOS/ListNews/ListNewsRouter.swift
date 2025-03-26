@@ -5,7 +5,7 @@
 //  Created by Radmas on 25/03/25.
 //
 protocol ListNewsRouting: AnyObject {
-    func showDetailsNews(news: News)
+    func showDetailsNews(news: News, updateNewsPresenterProtocol: UpdateNewsPresenterProtocol)
 }
 
 class ListNewsRouter: ListNewsRouting {
@@ -20,7 +20,7 @@ class ListNewsRouter: ListNewsRouting {
         self.newsDetailsRouter = newsDetailsRouter
     }
     
-    func showDetailsNews(news: News) {
-        newsDetailsRouter.configDetailsNewsVC(referenceVC: listNewsVC, news: news)
+    func showDetailsNews(news: News, updateNewsPresenterProtocol: UpdateNewsPresenterProtocol) {
+        newsDetailsRouter.configDetailsNewsVC(referenceVC: listNewsVC, news: news, updateNewsPresenterProtocol: updateNewsPresenterProtocol)
     }
 }

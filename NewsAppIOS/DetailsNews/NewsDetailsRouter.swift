@@ -14,8 +14,8 @@ class NewsDetailsRouter {
         self.appDependencies = appDependencies
     }
     
-    func configDetailsNewsVC(referenceVC: UIViewController, news: News) {
-        let detailVC =  appDependencies.configNewsDetailsVC(news: news)
+    func configDetailsNewsVC(referenceVC: UIViewController, news: News, updateNewsPresenterProtocol: UpdateNewsPresenterProtocol) {
+        let detailVC =  appDependencies.configNewsDetailsVC(news: news, updateNewsPresenterProtocol: updateNewsPresenterProtocol)
         showDetailsNews(referenceVC: referenceVC, detailVC: detailVC)
     }
     
